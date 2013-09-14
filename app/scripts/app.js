@@ -1,29 +1,15 @@
-'use strict';
+var app = angular.module('meetupAngularJSApp', ['app.controller']);
 
-var meetup = angular.module("meetupAngularJSApp",[]);
-
-meetup.controller('myController', function myController($scope, $http){
-    // mapping data
-    $scope.tweet = {} ;
-
-    $scope.add = function(tweet){
-        console.log("snoop  : " + tweet.libelle);
-        $http.put('http://localhost:9200/twitter/tweet/1')
-            .success(function(data) {
-                $scope.items = data;
-            })
-            .error(function (data){
-                $scope.error = data;
-            })
-    }
-
-    $http.get('http://localhost:9200/twitter/tweet/1')
-        .success(function (data){
-            $scope.catalogue = data;
+app.config(['$routeProvider', function($routeProvider) {
+    $routeProvider.
+        when('/', {
+            templateUrl: 'partials/tweet.html',
+            controller: 'TweetCtrl'
         })
-        .error(function (data){
-            $scope.catalogue = data;
+        .when('/tweetList', {
+            templateUrl: 'partials/tweetList.html',
+            controller: 'TweetListCtrl'
         })
-});
-
+        .otherwise({redirectTo:'/'});
+}]);
 

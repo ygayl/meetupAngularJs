@@ -1,5 +1,5 @@
 body {
-    background: #fafafa;
+    background: url("../img/bluecloud.jpg");
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;
 }
@@ -21,10 +21,64 @@ body {
     letter-spacing: -1px;
 }
 
-.map-canvas {
-    height:300px;
-    width:400px;
-    border:2px solid #777777;
-    margin:3px;
-    border:1px solid
+.myHeader{
+    background-color: rgba(0, 0, 0, 0.7);
+    height: 50px;
+    color: white;
+    text-align: center;
+    font-size: 25px;
+}
+
+.headerBandeau{
+    padding-top: 12px;
+}
+
+.tweetbox{
+    background: #fff;
+    padding: 15px;
+    margin: 5px 10px 10px 30px;
+    box-shadow: 0 0 20px #999;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    height: 300px;
+    width: 280px;
+}
+
+.tweetListBox{
+    background: #fff;
+    padding: 15px;
+    margin: 5px 10px 10px 30px;
+    box-shadow: 0 0 20px #999;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    height: 400px;
+    width: 350px;
+
+}
+
+.bandeauCentral{
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 62px 30px 42px;
+    width: 800px;
+    min-height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-primary{
+    display: block;
+    margin: 30px 0 0 200px;
+}
+
+.btn-primary[disabled]{
+    color: #000000;
+    background-color: #808080;
+}
+
+.aliasfield{
+    width: 260px;
+}
+
+.tweetfield{
+    width: 260px;
 }

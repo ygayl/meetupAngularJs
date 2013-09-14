@@ -7,18 +7,24 @@
     <link rel="stylesheet" href="styles/main.css">
     <script src="bower_components/angular/angular.js"></script>
     <script src="scripts/app.js"></script>
+      <script src="scripts/controllers.js"></script>
+    <script src="scripts/underscore.min.js"></script>
+    <script src="scripts/elastic.js"></script>
+    <script src="scripts/elastic-angular-client.js"></script>
   </head>
 
-  <body class="well" ng-controller="myController">
-    <h1>New tweet</h1>
+  <body>
+      <!--<header class="navbar">
+          <h1>AngularJS Meetup #1</h1>
+      </header>-->
 
-    <form name="tweetForm">
-        Comment : <input type="text" ng-model="tweet.libelle"/>
-        <button class="btn btn-primary" ng-click="add(tweet)">Send</button>
-    </form>
-
-    {{tweet}}
-    {{catalogue}}
-    {{error}}
+      <div class="myHeader">
+              <div class="container headerBandeau">
+                  AngularJS Meetup #1
+              </div>
+      </div>
+      <div class="bandeauCentral">
+          <ng-view class="container"></ng-view>
+      </div>
   </body>
 </html>

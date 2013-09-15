@@ -52,13 +52,13 @@ body {
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
     height: 400px;
-    width: 350px;
+    width: 400px;
 
 }
 
 .bandeauCentral{
     background-color: rgba(255, 255, 255, 0.2);
-    padding: 62px 30px 42px;
+    padding: 30px 30px 42px;
     width: 800px;
     min-height: 100%;
     margin-left: auto;
@@ -81,4 +81,9 @@ body {
 
 .tweetfield{
     width: 260px;
+}
+
+.tweetline{
+    padding: 9px 12px;
+    border-bottom: 1px solid #e8e8e8;
 }

@@ -14,15 +14,26 @@ meetup.controller('TweetCtrl', function myController($scope, TweetsService) {
 
         console.log("alias  : " + $scope.tweet.alias);
         console.log("snoop  : " + $scope.tweet.message);
-        TweetsService.adNewTweet($scope.tweet.alias, $scope.tweet.message, new Date().getTime());
+        TweetsService.addNewTweet($scope.tweet.alias, $scope.tweet.message, new Date().getTime());
 
 
     }
 
 });
 
-meetup.controller('TweetListCtrl', function myController($scope, TweetsService) {
-    $scope.tweets = TweetsService.getList();
+meetup.controller('TweetListCtrl', function myController($scope, TweetsService, $timeout) {
+
+    function refreshTable() {
+        $timeout(function () {
+            $scope.tweets = TweetsService.getList();
+            refreshTable();
+        }, 1000);
+
+    }
+
+    refreshTable();
+
+
 });
 
 

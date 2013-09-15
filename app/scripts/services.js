@@ -23,10 +23,6 @@ servicesModule.factory('TweetsService', function (ejsResource) {
         .indices(index)
         .types(type);
 
-    tweetsList = request
-        .query(ejs.MatchAllQuery())
-        .doSearch();
-
     function tweetIndex(username, quote, date) {
         ejs.Document(index, type).source({
             username: username,
@@ -40,9 +36,14 @@ servicesModule.factory('TweetsService', function (ejsResource) {
 
     return {
         getList: function () {
-            return tweetsList;
+            return  request
+                .query(ejs.MatchAllQuery())
+                .doSearch(function () {
+                    console.log('Success search');
+                });
+
         },
-        adNewTweet: function (username, quote, date) {
+        addNewTweet: function (username, quote, date) {
             tweetIndex(username, quote, date);
         }
     };

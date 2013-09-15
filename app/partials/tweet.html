@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="span4 tweetbox">
+        <h4>New tweet</h4>
+
+        <form name="tweetForm" ng-submit="addTweet()" novalidate>
+            <h5>Alias : </h5> <input class="aliasfield" type="text" ng-model="tweet.alias" ng-required="true"/>
+            <h5>Comment : </h5> <input class="tweetfield" type="text" ng-model="tweet.message" placeholder="Compose new tweet..." ng-required="true"/>
+            <button class="btn btn-primary btnsubmit" ng-disabled="tweetForm.$invalid">Send</button>
+        </form>
+    </div>
+    <div class="span4 tweetListBox" ng-controller="TweetListCtrl">
+        <h4>Tweets</h4>
+
+        <div class="tweetline" ng-repeat="tweet in tweets.hits.hits">
+            <h5>{{tweet._source.user}}</h5>
+            <div>{{tweet._source.message}}</div>
+        </div>
+
+    </div>
+</div>

@@ -1,6 +1,6 @@
-var app = angular.module('meetupAngularJSApp', ['app.controller','app.services']);
+var app = angular.module('meetupAngularJSApp', ['app.controller', 'app.services']);
 
-app.config(['$routeProvider', function($routeProvider) {
+app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.
         when('/', {
             templateUrl: 'partials/tweet.html',
@@ -10,6 +10,6 @@ app.config(['$routeProvider', function($routeProvider) {
             templateUrl: 'partials/tweetList.html',
             controller: 'TweetListCtrl'
         })
-        .otherwise({redirectTo:'/'});
+        .otherwise({redirectTo: '/'});
 }]);
 

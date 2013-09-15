@@ -9,27 +9,41 @@
 
 var servicesModule = angular.module('app.services', ['elasticjs.service']);
 
-servicesModule.factory('TweetsService', function(ejsResource){
-        var tweetsList = {};
+servicesModule.factory('TweetsService', function (ejsResource) {
+    var tweetsList = {};
 
-        /* instantiate (takes an optional url string) */
-        var ejs = ejsResource('http://localhost:9200');
+    /* instantiate (takes an optional url string) */
+    var ejs = ejsResource('http://localhost:9200');
 
-        var index = 'twitter';
-        var type = 'tweet';
+    var index = 'twitter';
+    var type = 'tweet';
 
-        // setup the indices and types to search across
-        var request = ejs.Request()
-            .indices(index)
-            .types(type);
+    // setup the indices and types to search across
+    var request = ejs.Request().size(50)
+        .indices(index)
+        .types(type);
 
-        tweetsList = request
-            .query(ejs.MatchAllQuery())
-            .doSearch();
+    tweetsList = request
+        .query(ejs.MatchAllQuery())
+        .doSearch();
 
-        return {
-            getList: function () {
-                return tweetsList;
+    function tweetIndex(username, quote, date) {
+        ejs.Document(index, type).source({
+            username: username,
+            quote: quote,
+            date: date
+        }).doIndex(function () {
+                console.log('Success indexing');
+            });
+    }
+
+
+    return {
+        getList: function () {
+            return tweetsList;
+        },
+        adNewTweet: function (username, quote, date) {
+            tweetIndex(username, quote, date);
         }
     };
 });

@@ -18,14 +18,11 @@
         </div>
 
         <div class="tweetline" ng-repeat="tweet in tweets.hits.hits| orderBy:dateSort:true"
-             ng-click="go('#/consultTweet.html')">
+             ng-click="go('consultTweet')">
             <h5>{{tweet._source.alias}}</h5>
-
             <div>{{tweet._source.message}}</div>
             <h5 class="tweetDate">{{tweet._source.date| date:'dd/MM/yy HH:mm'}}</h5>
         </div>
 
     </div>
-
-    {{tweets}}
 </div>

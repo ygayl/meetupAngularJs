@@ -19,19 +19,18 @@ meetup.controller('TweetCtrl', function myController($scope, TweetsService) {
 
 meetup.controller('TweetListCtrl', function myController($scope, TweetsService, $location, $timeout) {
 
-    /*    function refreshTable() {
-     $timeout(function () {
-     $scope.tweets = TweetsService.getList();
-     refreshTable();
-     }, 5000);
-     }
-     refreshTable();
-     */
+/*    function refreshTable() {
+        $timeout(function () {
+            $scope.tweets = TweetsService.getList();
+            refreshTable();
+        }, 5000);
+    }
+    refreshTable();
+*/
 
     $scope.tweets = TweetsService.getList();
     $scope.dateSort = '_source.date';
     console.log($scope.tweets);
-
 
     $scope.go = function (path) {
         $location.path(path);

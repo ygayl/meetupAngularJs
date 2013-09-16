@@ -23,10 +23,10 @@ servicesModule.factory('TweetsService', function (ejsResource) {
         .indices(index)
         .types(type);
 
-    function tweetIndex(username, quote, date) {
+    function tweetIndex(tweet, date) {
         ejs.Document(index, type).source({
-            username: username,
-            quote: quote,
+            alias: tweet.alias,
+            message: tweet.message,
             date: date
         }).doIndex(function () {
                 console.log('Success indexing');
@@ -43,8 +43,8 @@ servicesModule.factory('TweetsService', function (ejsResource) {
                 });
 
         },
-        addNewTweet: function (username, quote, date) {
-            tweetIndex(username, quote, date);
+        addTweet: function (tweet) {
+            tweetIndex(tweet, new Date().getTime());
         }
     };
 });

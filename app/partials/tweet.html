@@ -1,6 +1,8 @@
 <div class="row">
     <div class="span4 tweetbox">
-        <h4>New tweet</h4>
+        <div class="tweetsBox">
+            <h4>New tweet</h4>
+        </div>
 
         <form name="tweetForm" ng-submit="addTweet()" novalidate>
             <h5>Alias : </h5> <input class="aliasfield" type="text" ng-model="tweet.alias" ng-required="true"/>
@@ -9,27 +11,18 @@
             <button class="btn btn-primary btnsubmit" ng-disabled="tweetForm.$invalid">Send</button>
         </form>
     </div>
-    <div class="span4 tweetListBox" ng-controller="TweetListCtrl">
-        <h4>Tweets</h4>
 
-        <div class="tweetline">
-            <p>total tweets={{tweets.hits.total}}</p>
-            <table class="table table-striped table-hover">
-                <thead>
-                <tr>
-                    <th>User</th>
-                    <th>Message</th>
-                    <th>Date</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="tweet in tweets.hits.hits">
-                    <td>{{tweet._source.username}}</td>
-                    <td>{{tweet._source.quote}}</td>
-                    <td>{{tweet._source.date}}</td>
-                </tr>
-                </tbody>
-            </table>
+    <div class="span4 tweetListBox" ng-controller="TweetListCtrl">
+        <div class="tweetsBox">
+            <h4>Tweets</h4>
         </div>
+
+        <div class="tweetline" ng-repeat="tweet in tweets.hits.hits" ng-click="go('#/consultTweet.html')">
+            <h5>{{tweet._source.alias}}</h5>
+            <div>{{tweet._source.message}}</div>
+        </div>
+
     </div>
+
+    {{tweets}}
 </div>

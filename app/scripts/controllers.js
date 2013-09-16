@@ -11,29 +11,29 @@ meetup.controller('TweetCtrl', function myController($scope, TweetsService) {
 
 
     $scope.addTweet = function () {
-
-        console.log("alias  : " + $scope.tweet.alias);
-        console.log("snoop  : " + $scope.tweet.message);
-        TweetsService.addNewTweet($scope.tweet.alias, $scope.tweet.message, new Date().getTime());
-
-
+        TweetsService.addTweet($scope.tweet);
+        $scope.tweet = {};
     }
 
 });
 
-meetup.controller('TweetListCtrl', function myController($scope, TweetsService, $timeout) {
+meetup.controller('TweetListCtrl', function myController($scope, TweetsService, $location, $timeout) {
 
-    function refreshTable() {
+/*    function refreshTable() {
         $timeout(function () {
             $scope.tweets = TweetsService.getList();
             refreshTable();
-        }, 1000);
-
+        }, 5000);
     }
-
     refreshTable();
+*/
 
+    $scope.tweets = TweetsService.getList();
+    console.log($scope.tweets);
 
+    $scope.go = function (path) {
+        $location.path(path);
+    };
 });
 
 

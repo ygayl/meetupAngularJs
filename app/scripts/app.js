@@ -10,6 +10,10 @@ app.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'partials/tweetList.html',
             controller: 'TweetListCtrl'
         })
+        .when('/consultTweet', {
+            templateUrl: 'partials/consultTweet.html',
+            controller: 'ConsultTweetCtrl'
+        })
         .otherwise({redirectTo: '/'});
 }]);
 

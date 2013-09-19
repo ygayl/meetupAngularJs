@@ -1,4 +1,4 @@
-var app = angular.module('meetupAngularJSApp', ['app.controller', 'app.services']);
+var app = angular.module('meetupAngularJSApp', ['app.controller', 'app.services', 'app.tweetFilters', 'ui.bootstrap']);
 
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.

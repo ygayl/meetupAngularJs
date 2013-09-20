@@ -6,10 +6,6 @@ app.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'partials/tweet.html',
             controller: 'NewTweetCtrl'
         })
-        .when('/tweetList', {
-            templateUrl: 'partials/tweetList.html',
-            controller: 'TweetListCtrl'
-        })
         .when('/consultTweet/:tweetId', {
             templateUrl: 'partials/consultTweet.html',
             controller: 'ConsultTweetCtrl'

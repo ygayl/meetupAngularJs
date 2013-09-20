@@ -21,18 +21,12 @@ body {
     letter-spacing: -1px;
 }
 
-.filterLabel {
-    display: inline-block;
-    padding: 0px 100px 0px 0px;
-    text-align: left;
-}
+input[type="search"]{
+    width: 120px;
 
-.filterIn {
+}
+.searchFilter{
     display: inline-block;
-    margin: 3px 0px -20px 13px;
-    width: 100px;
-    height: 20px;
-    float: right;
 }
 
 .myHeader {
@@ -54,14 +48,14 @@ body {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     height: 300px;
-    width: 280px;
+    width: 280px !important;
 }
 
 .tweetDate {
-    margin: -49px 100px 48px 297px;
+    /*margin: -49px 100px 48px 270px;*/
     color: rgb(114, 99, 99);
-    font: 11px arial, sans-serif;
-    white-space: nowrap;
+    font: 12px arial, sans-serif;
+    /*white-space: nowrap;*/
 }
 
 .tweetListBox {
@@ -97,6 +91,10 @@ body {
     width: 260px;
 }
 
+#tweetForm{
+    padding: 9px 12px;
+}
+
 .tweetfield {
     width: 260px;
 }
@@ -107,8 +105,9 @@ body {
     cursor: pointer;
 }
 
-.tweetsBox {
+.headerBox {
     border-bottom: 1px solid #e8e8e8;
+    padding: 9px 12px;
 }
 
 .tweetline:hover {

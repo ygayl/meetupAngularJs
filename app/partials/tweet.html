@@ -16,8 +16,18 @@
         <div class="tweetsBox">
             <h4>Tweets</h4>
         </div>
+        <div>
+            <a ng-click="isCollapsed = !isCollapsed">Filter</a>
 
-        <div class="tweetline" ng-repeat="tweet in tweets.hits.hits| orderBy:dateSort:true" ng-click="goConsultTweet(tweet)">
+            <div collapse="isCollapsed">
+                <p>User:<input class="filterIn" ng-model="userQuery.alias"></p>
+
+                <p>Message:<input class="filterIn" ng-model="userQuery.message"></p>
+            </div>
+        </div>
+        <div class="tweetline"
+             ng-repeat="tweet in tweets.hits.hits| orderBy:dateSort:dateSortDescendant|tweetFilter:userQuery.alias:userQuery.message"
+             ng-click="goConsultTweet(tweet)">
             <h5>{{tweet._source.alias}}</h5>
             <div>{{tweet._source.message}}</div>
             <h5 class="tweetDate">{{tweet._source.date| date:'dd/MM/yy HH:mm'}}</h5>

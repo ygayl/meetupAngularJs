@@ -1,31 +1,35 @@
 <html ng-app="meetupAngularJSApp">
-  <head>
+<head>
     <meta charset="utf-8">
     <title>meetupAngularJS</title>
 
     <link rel="stylesheet" href="styles/bootstrap.css">
     <link rel="stylesheet" href="styles/main.css">
     <script src="bower_components/angular/angular.js"></script>
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js"></script>
+
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers.js"></script>
     <script src="scripts/services.js"></script>
     <script src="scripts/underscore.min.js"></script>
     <script src="scripts/elastic.js"></script>
     <script src="scripts/elastic-angular-client.js"></script>
-  </head>
+    <script src="scripts/filters.js"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+</head>
 
-  <body>
-      <!--<header class="navbar">
-          <h1>AngularJS Meetup #1</h1>
-      </header>-->
+<body>
+<!--<header class="navbar">
+    <h1>AngularJS Meetup #1</h1>
+</header>-->
 
-      <div class="myHeader">
-              <div class="container headerBandeau">
-                  AngularJS Meetup #1
-              </div>
-      </div>
-      <div class="bandeauCentral">
-          <ng-view class="container"></ng-view>
-      </div>
-  </body>
+<div class="myHeader">
+    <div class="container headerBandeau">
+        AngularJS Meetup #1
+    </div>
+</div>
+<div class="bandeauCentral">
+    <ng-view class="container"></ng-view>
+</div>
+</body>
 </html>

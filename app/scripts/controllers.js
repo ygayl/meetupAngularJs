@@ -7,7 +7,7 @@
  */
 var meetup = angular.module("app.controller", ['elasticjs.service']);
 
-meetup.controller('TweetCtrl', function myController($scope, TweetsService) {
+meetup.controller('NewTweetCtrl', function myController($scope, TweetsService) {
 
 
     $scope.addTweet = function () {

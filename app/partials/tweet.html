@@ -20,9 +20,9 @@
             <a ng-click="isCollapsed = !isCollapsed">Filter</a>
 
             <div collapse="isCollapsed">
-                <p>User:<input class="filterIn" ng-model="userQuery.alias"></p>
+                <label class="filterLabel">User:</label><input class="filterIn" ng-model="userQuery.alias">
 
-                <p>Message:<input class="filterIn" ng-model="userQuery.message"></p>
+                <label class="filterLabel">Message:</label><input class="filterIn" ng-model="userQuery.message">
             </div>
         </div>
         <div class="tweetline"

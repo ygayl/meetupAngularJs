@@ -7,34 +7,25 @@
  */
 var meetup = angular.module("app.controller", ['elasticjs.service']);
 
-meetup.controller('TweetCtrl', function myController($scope, TweetsService) {
-
-
+meetup.controller('NewTweetCtrl', function myController($scope, TweetsService) {
     $scope.addTweet = function () {
         TweetsService.addTweet($scope.tweet);
         $scope.tweet = {};
     }
-
 });
 
 meetup.controller('TweetListCtrl', function myController($scope, TweetsService, $location, $timeout) {
 
-/*    function refreshTable() {
-        $timeout(function () {
-            $scope.tweets = TweetsService.getList();
-            refreshTable();
-        }, 5000);
-    }
-    refreshTable();
-*/
-
     $scope.tweets = TweetsService.getList();
     $scope.dateSort = '_source.date';
-    console.log($scope.tweets);
 
-    $scope.go = function (path) {
-        $location.path(path);
+    $scope.goConsultTweet = function(tweet){
+        $location.path('consultTweet/' + tweet._id);
     };
+});
+
+meetup.controller('ConsultTweetCtrl', function myController($scope, $routeParams, TweetsService) {
+    $scope.tweet = TweetsService.getTweet($routeParams.tweetId);
 });
 
 

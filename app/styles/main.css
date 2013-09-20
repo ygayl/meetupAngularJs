@@ -46,7 +46,7 @@ body {
 .tweetDate {
     margin: -49px 100px 48px 297px;
     color: rgb(114, 99, 99);
-    font: 8px arial, sans-serif;
+    font: 11px arial, sans-serif;
     white-space: nowrap;
 }
 
@@ -109,5 +109,4 @@ body {
     -webkit-border-radius:5px;
     height: 300px;
     width: 600px;
-
 }

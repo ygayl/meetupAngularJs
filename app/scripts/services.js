@@ -45,6 +45,10 @@ servicesModule.factory('TweetsService', function (ejsResource) {
         },
         addTweet: function (tweet) {
             tweetIndex(tweet, new Date().getTime());
+        },
+        getTweet: function(id) {
+            alert("tweetID :" + id);
         }
+
     };
 });

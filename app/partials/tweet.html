@@ -20,17 +20,16 @@
             <input type="search" placeholder="alias" ng-model="userQuery.alias">
             <input type="search" placeholder="message" ng-model="userQuery.message">
         </div>
-        <div>
-
-        </div>
-        <div class="tweetline"
-             ng-repeat="tweet in tweets.hits.hits|orderBy:dateSort:dateSortDescendant|tweetFilter:userQuery.alias:userQuery.message"
-             ng-click="goConsultTweet(tweet)">
+        <div ng-repeat="tweet in tweets.hits.hits|orderBy:dateSort:dateSortDescendant|tweetFilter:userQuery.alias:userQuery.message"
+             ng-click="goConsultTweet(tweet)" class="tweetline">
             <div class="row">
                 <h5 class="span2">{{tweet._source.alias}}</h5>
                 <h5 class="span2 tweetDate">{{tweet._source.date| date:'dd/MM/yy HH:mm'}}</h5>
             </div>
             <div>{{tweet._source.message}}</div>
+        </div>
+        <div class="headerBox">
+            <h6>No tweets available...</h6>
         </div>
 
     </div>

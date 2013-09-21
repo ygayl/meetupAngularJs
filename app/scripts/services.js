@@ -10,8 +10,6 @@
 var servicesModule = angular.module('app.services', ['elasticjs.service']);
 
 servicesModule.factory('TweetsService', function (ejsResource) {
-    var tweetsList = {};
-
     /* instantiate (takes an optional url string) */
     var ejs = ejsResource('http://localhost:9200');
 
@@ -38,7 +36,7 @@ servicesModule.factory('TweetsService', function (ejsResource) {
 
     return {
         getList: function (callbackFn) {
-            return  request
+            return request
                 .query(ejs.MatchAllQuery())
                 .doSearch(function () {
                     console.log('Success search');
@@ -50,9 +48,28 @@ servicesModule.factory('TweetsService', function (ejsResource) {
             tweetIndex(tweet, new Date().getTime(), callbackFn);
         },
         getTweet: function (id, callbackFn) {
-            return request.query(ejs.MatchQuery('_id', id)).doSearch(function () {
-                callbackFn;
+                return request.query(ejs.MatchQuery('_id', id)).doSearch(function () {
+               if (callbackFn !== undefined){
+                   callbackFn();
+               }
             })
         }
     };
+});
+
+
+servicesModule.factory('SharedModelService', function (TweetsService) {
+    var Session = function () {
+        this.tweets = TweetsService.getList(function () {
+            console.log('init tweets list');
+        });
+    };
+
+    Session.prototype.updateTweets = function () {
+        this.tweets = TweetsService.getList(function () {
+            console.log('update tweets list');
+        });
+    };
+
+    return new Session();
 });

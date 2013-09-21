@@ -32,6 +32,12 @@ meetup.controller('NewTweetCtrl', function myController($scope, TweetsService, s
     $scope.tweets = $scope.model.tweets;
 
 
+    $scope.page = 1;
+    $scope.families = [];
+    $scope.more = true;
+    $scope.status_bar = "";
+
+
     $scope.addTweet = function () {
         TweetsService.addTweet($scope.tweet, function () {
             $scope.model.updateTweets();
@@ -41,14 +47,33 @@ meetup.controller('NewTweetCtrl', function myController($scope, TweetsService, s
 
 });
 
-meetup.controller('TweetListCtrl', function myController($scope, $location) {
+meetup.controller('TweetListCtrl', function myController($scope, $location, $filter) {
+    $scope.dateSort = '_source.date';
+    $scope.dateSortDescendant = true;
+    $scope.numLimit = 5;
+
+    function updateStatusBar() {
+        $scope.hasMore = false;
+        $scope.isTweet = true;
+        if (!$scope.tweets.$$v || $scope.tweets.$$v.hits.total == 0) {
+            $scope.isTweet = false;
+
+        } else if ($scope.tweets.$$v.hits.total > $scope.numLimit) {
+            $scope.hasMore = true;
+        }
+    }
 
 
     $scope.$watch('tweets', function () {
         console.log('New tweet,list updated!');
+        console.log($scope.tweets);
+        updateStatusBar();
     });
-    $scope.dateSort = '_source.date';
-    $scope.dateSortDescendant = true;
+
+    $scope.show_more = function () {
+        $scope.numLimit += 5;
+        updateStatusBar();
+    }
 
     $scope.goConsultTweet = function (tweet) {
         console.log(tweet);

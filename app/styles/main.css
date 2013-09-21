@@ -21,11 +21,12 @@ body {
     letter-spacing: -1px;
 }
 
-input[type="search"]{
+input[type="search"] {
     width: 170px;
 
 }
-.searchFilter{
+
+.searchFilter {
     display: inline-block;
 }
 
@@ -66,6 +67,14 @@ input[type="search"]{
     -webkit-border-radius: 5px;
 }
 
+.tweetListContainer {
+
+    background-color: #F3F5F5;
+    overflow: auto;
+    height: 500px;
+
+}
+
 .bandeauCentral {
     background-color: rgba(255, 255, 255, 0.2);
     padding: 30px 30px 42px;
@@ -89,7 +98,7 @@ input[type="search"]{
     width: 260px;
 }
 
-#tweetForm{
+#tweetForm {
     padding: 9px 12px;
 }
 

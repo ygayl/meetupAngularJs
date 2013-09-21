@@ -18,37 +18,38 @@ servicesModule.factory('TweetsService', function (ejsResource) {
     var index = 'twitter';
     var type = 'tweet';
 
-    // setup the indices and types to search across
-    var request = ejs.Request().size(50)
-        .indices(index)
-        .types(type);
 
-    function tweetIndex(tweet, date) {
+    function tweetIndex(tweet, date, callbackFn) {
         ejs.Document(index, type).source({
             alias: tweet.alias,
             message: tweet.message,
             date: date
-        }).doIndex(function () {
+        }).refresh(true).doIndex(function () {
                 console.log('Success indexing');
+                callbackFn();
             });
     }
 
 
     return {
-        getList: function () {
+        getList: function (callbackFn) {
+            // setup the indices and types to search across
+            var request = ejs.Request().size(50)
+                .indices(index)
+                .types(type);
             return  request
                 .query(ejs.MatchAllQuery())
                 .doSearch(function () {
                     console.log('Success search');
+                    callbackFn();
                 });
 
         },
-        addTweet: function (tweet) {
-            tweetIndex(tweet, new Date().getTime());
+        addTweet: function (tweet, callbackFn) {
+            tweetIndex(tweet, new Date().getTime(), callbackFn);
         },
-        getTweet: function(id) {
+        getTweet: function (id) {
             alert("tweetID :" + id);
         }
-
     };
 });

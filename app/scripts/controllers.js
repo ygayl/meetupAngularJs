@@ -5,35 +5,52 @@
  * Time: 22:48
  * To change this template use File | Settings | File Templates.
  */
-var meetup = angular.module("app.controller", ['elasticjs.service']);
+var meetup = angular.module("app.controller", []);
 
-meetup.controller('NewTweetCtrl', function myController($scope, TweetsService) {
+
+meetup.factory('sharedModel', function (TweetsService) {
+    var Session = function () {
+        this.tweets = TweetsService.getList(function () {
+            console.log('init tweets list');
+        });
+    };
+
+
+    Session.prototype.updateTweets = function () {
+        var self = this;
+        self.tweets = TweetsService.getList(function () {
+            console.log('update tweets list');
+        });
+    };
+
+    return new Session();
+});
+
+meetup.controller('NewTweetCtrl', function myController($scope, TweetsService, sharedModel) {
+
+    $scope.model = sharedModel;
+    $scope.tweets = $scope.model.tweets;
 
 
     $scope.addTweet = function () {
-        TweetsService.addTweet($scope.tweet);
-        $scope.tweet = {};
+        TweetsService.addTweet($scope.tweet, function () {
+            $scope.model.updateTweets();
+            $scope.tweets = $scope.model.tweets;
+        });
     }
 
 });
 
-meetup.controller('TweetListCtrl', function myController($scope, TweetsService, $location, $timeout) {
+meetup.controller('TweetListCtrl', function myController($scope, $location) {
 
-/*    function refreshTable() {
-        $timeout(function () {
-            $scope.tweets = TweetsService.getList();
-            refreshTable();
-        }, 5000);
-    }
-    refreshTable();
-*/
 
-    $scope.tweets = TweetsService.getList();
+    $scope.$watch('tweets', function () {
+        console.log('New tweet,list updated!');
+    });
     $scope.dateSort = '_source.date';
     $scope.dateSortDescendant = true;
-    console.log($scope.tweets);
 
-    $scope.goConsultTweet = function(tweet){
+    $scope.goConsultTweet = function (tweet) {
         $location.path('consultTweet/' + tweet._id);
     };
 });

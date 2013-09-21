@@ -13,8 +13,8 @@ meetup.factory('sharedModel', function (TweetsService) {
         this.tweets = TweetsService.getList(function () {
             console.log('init tweets list');
         });
+        this.selectedTweetId = "";
     };
-
 
     Session.prototype.updateTweets = function () {
         var self = this;
@@ -51,8 +51,19 @@ meetup.controller('TweetListCtrl', function myController($scope, $location) {
     $scope.dateSortDescendant = true;
 
     $scope.goConsultTweet = function (tweet) {
+        console.log(tweet);
+        $scope.model.selectedTweetId = tweet._id;
         $location.path('consultTweet/' + tweet._id);
     };
 });
 
 
+meetup.controller('ConsultTweetCtrl', function myController($scope, sharedModel, TweetsService) {
+    $scope.model = sharedModel;
+    console.log('selected tweet: ' + $scope.model.selectedTweetId);
+    $scope.tweet = TweetsService.getTweet($scope.model.selectedTweetId, function () {
+        console.log('display selected tweet');
+    })
+    //todo
+
+});

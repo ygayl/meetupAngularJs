@@ -18,6 +18,11 @@ servicesModule.factory('TweetsService', function (ejsResource) {
     var index = 'twitter';
     var type = 'tweet';
 
+    // setup the indices and types to search across
+    var request = ejs.Request().size(50)
+        .indices(index)
+        .types(type);
+
 
     function tweetIndex(tweet, date, callbackFn) {
         ejs.Document(index, type).source({
@@ -33,10 +38,6 @@ servicesModule.factory('TweetsService', function (ejsResource) {
 
     return {
         getList: function (callbackFn) {
-            // setup the indices and types to search across
-            var request = ejs.Request().size(50)
-                .indices(index)
-                .types(type);
             return  request
                 .query(ejs.MatchAllQuery())
                 .doSearch(function () {
@@ -48,8 +49,10 @@ servicesModule.factory('TweetsService', function (ejsResource) {
         addTweet: function (tweet, callbackFn) {
             tweetIndex(tweet, new Date().getTime(), callbackFn);
         },
-        getTweet: function (id) {
-            alert("tweetID :" + id);
+        getTweet: function (id, callbackFn) {
+            return request.query(ejs.MatchQuery('_id', id)).doSearch(function () {
+                callbackFn;
+            })
         }
     };
 });

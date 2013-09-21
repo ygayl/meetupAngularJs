@@ -22,7 +22,7 @@ body {
 }
 
 input[type="search"]{
-    width: 120px;
+    width: 170px;
 
 }
 .searchFilter{
@@ -52,10 +52,10 @@ input[type="search"]{
 }
 
 .tweetDate {
-    /*margin: -49px 100px 48px 270px;*/
     color: rgb(114, 99, 99);
     font: 12px arial, sans-serif;
-    /*white-space: nowrap;*/
+    text-align: right;
+    width: 240px !important;
 }
 
 .tweetListBox {
@@ -64,8 +64,6 @@ input[type="search"]{
     box-shadow: 0 0 20px #999;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-    height: 600px;
-    width: 420px;
 }
 
 .bandeauCentral {

@@ -7,47 +7,20 @@
  */
 var meetup = angular.module("app.controller", []);
 
-
-meetup.factory('sharedModel', function (TweetsService) {
-    var Session = function () {
-        this.tweets = TweetsService.getList(function () {
-            console.log('init tweets list');
-        });
-        this.selectedTweetId = "";
-    };
-
-    Session.prototype.updateTweets = function () {
-        var self = this;
-        self.tweets = TweetsService.getList(function () {
-            console.log('update tweets list');
-        });
-    };
-
-    return new Session();
-});
-
-meetup.controller('NewTweetCtrl', function myController($scope, TweetsService, sharedModel) {
-
-    $scope.model = sharedModel;
-    $scope.tweets = $scope.model.tweets;
-
-
-    $scope.page = 1;
-    $scope.families = [];
-    $scope.more = true;
-    $scope.status_bar = "";
-
+meetup.controller('NewTweetCtrl', function myController($scope, TweetsService, SharedModelService) {
+    $scope.tweets = SharedModelService.tweets;
 
     $scope.addTweet = function () {
         TweetsService.addTweet($scope.tweet, function () {
             $scope.model.updateTweets();
-            $scope.tweets = $scope.model.tweets;
+            $scope.tweets = SharedModelService.tweets;
         });
     }
 
 });
 
-meetup.controller('TweetListCtrl', function myController($scope, $location, $filter) {
+meetup.controller('TweetListCtrl', function myController($scope, $location) {
+
     $scope.dateSort = '_source.date';
     $scope.dateSortDescendant = true;
     $scope.numLimit = 5;
@@ -76,19 +49,11 @@ meetup.controller('TweetListCtrl', function myController($scope, $location, $fil
     }
 
     $scope.goConsultTweet = function (tweet) {
-        console.log(tweet);
-        $scope.model.selectedTweetId = tweet._id;
         $location.path('consultTweet/' + tweet._id);
     };
 });
 
 
-meetup.controller('ConsultTweetCtrl', function myController($scope, sharedModel, TweetsService) {
-    $scope.model = sharedModel;
-    console.log('selected tweet: ' + $scope.model.selectedTweetId);
-    $scope.tweet = TweetsService.getTweet($scope.model.selectedTweetId, function () {
-        console.log('display selected tweet');
-    })
-    //todo
-
+meetup.controller('ConsultTweetCtrl', function myController($scope, $routeParams, TweetsService) {
+    $scope.tweet = TweetsService.getTweet($routeParams.tweetId);
 });

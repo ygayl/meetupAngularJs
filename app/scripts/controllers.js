@@ -12,7 +12,7 @@ meetup.controller('NewTweetCtrl', function myController($scope, TweetsService, S
 
     $scope.addTweet = function () {
         TweetsService.addTweet($scope.tweet, function () {
-            $scope.model.updateTweets();
+            SharedModelService.updateTweets();
             $scope.tweets = SharedModelService.tweets;
         });
     }

@@ -1,7 +1,9 @@
 <div class="tweetConsultBox" ng-repeat="aTweet in tweet.hits.hits">
     <div ng-show="$first">
-            <h5>Name : </h5>{{aTweet._source.alias}}
-            <h5>Data count : </h5>{{aTweet._source.message}}
+        <h5>Name : <p>{{aTweet._source.alias}}</p></h5>
+        <h5>Message: <p>{{aTweet._source.message}}</p></h5>
+        <h5>Created on : <p>{{aTweet._source.date | date:'fullDate'}} at {{aTweet._source.date | date:'HH:mm'}}</p></h5>
+
     </div>
 </div>
 

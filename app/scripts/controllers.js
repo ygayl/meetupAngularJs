@@ -7,7 +7,7 @@
  */
 var meetup = angular.module("app.controller", []);
 
-meetup.controller('NewTweetCtrl', function myController($scope, TweetsService, SharedModelService) {
+meetup.controller('NewTweetCtrl', function ($scope, TweetsService, SharedModelService) {
     $scope.tweets = SharedModelService.tweets;
 
     $scope.addTweet = function () {
@@ -20,17 +20,14 @@ meetup.controller('NewTweetCtrl', function myController($scope, TweetsService, S
 
 });
 
-meetup.controller('TweetListCtrl', function myController($scope, $location) {
+meetup.controller('TweetListCtrl', function ($scope, $location) {
 
-    $scope.dateSort = '_source.date';
-    $scope.dateSortDescendant = true;
     $scope.numLimit = 5;
 
     function updateStatusBar() {
-        $scope.hasMore = false;
-        $scope.isTweet = true;
+
         if (!$scope.tweets.$$v || $scope.tweets.$$v.hits.total == 0) {
-            $scope.isTweet = false;
+            $scope.hasMore = false;
 
         } else if ($scope.tweets.$$v.hits.total > $scope.numLimit) {
             $scope.hasMore = true;
@@ -55,6 +52,6 @@ meetup.controller('TweetListCtrl', function myController($scope, $location) {
 });
 
 
-meetup.controller('ConsultTweetCtrl', function myController($scope, $routeParams, TweetsService) {
+meetup.controller('ConsultTweetCtrl', function ($scope, $routeParams, TweetsService) {
     $scope.tweet = TweetsService.getTweet($routeParams.tweetId);
 });

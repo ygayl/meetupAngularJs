@@ -22,7 +22,7 @@
         </div>
         <div class="tweetListContainer">
             <div class="tweetline"
-                 ng-repeat="tweet in tweets.hits.hits|orderBy:dateSort:dateSortDescendant|tweetFilter:userQuery.alias:userQuery.message|limitTo:numLimit"
+                 ng-repeat="tweet in tweets.hits.hits|orderBy:_source.date:true|tweetFilter:userQuery.alias:userQuery.message|limitTo:numLimit"
                  ng-click="goConsultTweet(tweet)">
                 <div class="row">
                     <h5 class="span2">{{tweet._source.alias}}</h5>
@@ -38,7 +38,6 @@
                     </button>
                 </p>
             </div>
-            <div>{{tweet._source.message}}</div>
         </div>
     </div>
 </div>
